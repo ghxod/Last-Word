@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>마지막으로 전하는 말</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #050505;
+  color: white;
+  font-family: sans-serif;
+  min-height: 100dvh;
+}
+#login {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+}
+h2 { font-size: 23px; }
+input, button {
+  width: 100%;
+  max-width: 320px;
+  padding: 15px;
+  border: 0;
+  border-radius: 8px;
+  font-size: 17px;
+}
+button {
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+#error { color: #ff5555; }
+#reveal {
+  display: none;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  font-size: min(75vw, 65vh, 420px);
+  line-height: 1;
+}
+</style>
+</head>
+<body>
+<div id="login">
+  <h2>마지막으로 전하는 말</h2>
+  <p>비밀번호를 입력하세요.</p>
+  <input id="pw" type="password" placeholder="비밀번호">
+  <button onclick="checkPassword()">확인</button>
+  <p id="error"></p>
+</div>
+<div id="reveal">🖕</div>
+<script>
+const PASSWORD = "6974";
+
+function checkPassword() {
+  if (document.getElementById("pw").value === PASSWORD) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("reveal").style.display = "flex";
+  } else {
+    document.getElementById("error").textContent =
+      "비밀번호가 틀렸습니다.";
+  }
+}
+document.getElementById("pw").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkPassword();
+});
+</script>
+</body>
+</html>
